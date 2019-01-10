@@ -1,0 +1,26 @@
+.Person {
+  display: flex;
+  margin: 10px;
+  box-shadow: 0 2px 2px #ccc;
+  padding: 30px;
+  color: blue;
+  background: #eef;
+  flex-direction: column;
+  border-radius: 5%;
+  border: 1px solid blue;
+  width: 150px;
+  animation: normal;
+  cursor: pointer;
+  font: inherit;
+  overflow: hidden;
+  word-wrap: break-spaces;
+  text-overflow: ellipsis;
+  &:hover {
+    box-shadow: 2px 5px 5px #282c34;
+  }
+  .data{
+    flex-direction: column;
+    display: flex;
+    margin: 10px;
+  }
+}
