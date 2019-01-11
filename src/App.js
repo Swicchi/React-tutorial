@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Radium, {StyleRoot} from 'radium';
 import Person from './components/Person/Person'
 import './App.css';
 import {library} from '@fortawesome/fontawesome-svg-core'
@@ -90,10 +89,6 @@ class App extends Component {
             backgroundColor: '#3f3',
             padding: '8px',
             margin: '10px',
-            ':hover':{
-                backgroundColor:'lightgreen',
-                color: 'black'
-            }
         };
 
         let listPerson = null;
@@ -106,15 +101,9 @@ class App extends Component {
                          age={person.age}
                          key={person.id}/>)}
             </div>);
-            style.backgroundColor = '#f44'
-            style[':hover'] = {
-                backgroundColor:'salmon',
-                color: 'black'
-            }
         }
 
         return (
-            <StyleRoot>
             <div className="App">
                 <button style={style}
                         onClick={this.tooglePersonsHandler}>
@@ -122,9 +111,8 @@ class App extends Component {
                 </button>
                 {listPerson}
             </div>
-        </StyleRoot>
         );
     }
 }
 
-export default Radium(App);
+export default App;

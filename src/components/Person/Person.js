@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import Radium from 'radium';
 import './Person.scss';
 
 class Person extends Component {
@@ -23,14 +22,8 @@ class Person extends Component {
             background: '#cfc'
         };
 
-        const mediaStyle = {
-            '@media(min-width:500px)':{
-                width:'450px'
-            }
-        }
-
         return (
-            <div className="Person" style={mediaStyle}>
+            <div className="Person">
                 <div>
                     {this.state.status?
                         <FontAwesomeIcon onClick={this.aHandler} icon={"arrow-alt-circle-up"}/>:
@@ -51,4 +44,4 @@ class Person extends Component {
     }
 }
 
-export default Radium(Person);
+export default Person;
