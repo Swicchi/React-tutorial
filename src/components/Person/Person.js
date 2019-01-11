@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import './Person.scss';
+import classes from './Person.css';
 
 class Person extends Component {
     state = {
@@ -23,7 +23,7 @@ class Person extends Component {
         };
 
         return (
-            <div className="Person">
+            <div className={classes.Person}>
                 <div>
                     {this.state.status?
                         <FontAwesomeIcon onClick={this.aHandler} icon={"arrow-alt-circle-up"}/>:
@@ -32,7 +32,7 @@ class Person extends Component {
                 </div>
                 <h1>{this.props.name}</h1>
                 {this.state.status &&
-                <div className="data">
+                <div className={classes['data']}>
                     <p>Your age: {this.props.age}</p>
                     <input
                         style={inputStyle}

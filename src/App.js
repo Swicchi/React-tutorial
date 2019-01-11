@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Person from './components/Person/Person'
-import './App.css';
+import classes from './App.css';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import * as Icon from '@fortawesome/free-solid-svg-icons'
 
@@ -101,10 +101,17 @@ class App extends Component {
                          age={person.age}
                          key={person.id}/>)}
             </div>);
+            style.backgroundColor='#f33'
+        }
+
+        const assignedClasses = [];
+        if(this.state.persons.length<=1){
+            assignedClasses.push(classes.red);
         }
 
         return (
-            <div className="App">
+            <div className={classes.App}>
+                <p className={assignedClasses.join(' ')}>Hello!!!</p>
                 <button style={style}
                         onClick={this.tooglePersonsHandler}>
                     Switch Names
