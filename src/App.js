@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
+import Radium, {StyleRoot} from 'radium';
 import Person from './components/Person/Person'
 import './App.css';
 import {library} from '@fortawesome/fontawesome-svg-core'
 import * as Icon from '@fortawesome/free-solid-svg-icons'
 
-library.add(Icon.faArrowAltCircleDown)
-library.add(Icon.faArrowAltCircleUp)
-library.add(Icon.faTimesCircle)
+library.add(Icon.faArrowAltCircleDown);
+library.add(Icon.faArrowAltCircleUp);
+library.add(Icon.faTimesCircle);
 
 class App extends Component {
     state = {
@@ -23,7 +24,7 @@ class App extends Component {
             }
         ],
         showPersons: false
-    }
+    };
 
     switchNameHandler = () => {
         this.setState({
@@ -46,20 +47,20 @@ class App extends Component {
                     }
                 ]
         })
-    }
+    };
 
     deletePersonHandler = (idx) => {
         const persons = this.state.persons;
-        persons.splice(idx, 1)
+        persons.splice(idx, 1);
         this.setState({
             persons: persons
         })
-    }
+    };
 
     nameChangeHandler = (event,id) => {
         const personIdx = this.state.persons.findIndex(p =>{
             return p.id === id;
-        })
+        });
 
         const person = {...this.state.persons[personIdx]};
         //const person = Object.assign({},this.state.persons[personIdx])
@@ -71,20 +72,14 @@ class App extends Component {
         this.setState({
             persons:persons
         })
-    }
+    };
 
     tooglePersonsHandler = () => {
         const doesShow = this.state.showPersons;
         this.setState({
             showPersons: !doesShow
         })
-    }
-
-    showHandler = () => {
-        this.setState({
-            showPersons: true
-        })
-    }
+    };
 
     render() {
         const style = {
@@ -92,12 +87,16 @@ class App extends Component {
             color: '#131',
             font: 'inherit',
             border: '1px solid blue',
-            background: '#afa',
+            backgroundColor: '#3f3',
             padding: '8px',
-            margin: '10px'
-        }
+            margin: '10px',
+            ':hover':{
+                backgroundColor:'lightgreen',
+                color: 'black'
+            }
+        };
 
-        let listPerson = null
+        let listPerson = null;
 
         if (this.state.showPersons) {
             listPerson = (<div> {this.state.persons.map((person, idx) =>
@@ -106,11 +105,16 @@ class App extends Component {
                          name={person.name}
                          age={person.age}
                          key={person.id}/>)}
-            </div>)
-            style.background = '#faa'
+            </div>);
+            style.backgroundColor = '#f44'
+            style[':hover'] = {
+                backgroundColor:'salmon',
+                color: 'black'
+            }
         }
 
         return (
+            <StyleRoot>
             <div className="App">
                 <button style={style}
                         onClick={this.tooglePersonsHandler}>
@@ -118,8 +122,9 @@ class App extends Component {
                 </button>
                 {listPerson}
             </div>
+        </StyleRoot>
         );
     }
 }
 
-export default App;
+export default Radium(App);
