@@ -14,11 +14,6 @@ class Person extends Component {
     };
 
     render() {
-        const rnd = Math.random();
-        if(rnd>0.9){
-            throw new Error ('Something went wrong');
-        }
-
         const iconStyle = {
             marginLeft: 80
         };

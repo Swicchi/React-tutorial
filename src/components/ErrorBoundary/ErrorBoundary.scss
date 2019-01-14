@@ -1,0 +1,18 @@
+.ErrorBoundary{
+  display: flex;
+  margin: 10px;
+  box-shadow: 0 2px 2px #ccc;
+  padding: 30px;
+  color: blue;
+  background: #eef;
+  flex-direction: column;
+  border-radius: 5%;
+  border: 1px solid blue;
+  width: 450px;
+  animation: normal;
+  cursor: pointer;
+  font: inherit;
+  overflow: hidden;
+  word-wrap: break-spaces;
+  text-overflow: ellipsis;
+}

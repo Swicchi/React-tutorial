@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import classes from './App.css';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import * as Icon from '@fortawesome/free-solid-svg-icons';
-import Person from "./components/Person/Person";
-import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 
 library.add(Icon.faArrowAltCircleDown);
 library.add(Icon.faArrowAltCircleUp);
@@ -83,35 +83,20 @@ class App extends Component {
 
     render() {
         let listPerson = null;
-        let btnClass = '';
 
         if (this.state.showPersons) {
-            listPerson = (<div> {this.state.persons.map((person, idx) => {
-                    return <ErrorBoundary  key={person.id}>
-                        <Person click={() => this.deletePersonHandler(idx)}
-                                change={(event) => this.nameChangeHandler(event, person.id)}
-                                name={person.name}
-                                age={person.age}
-                               />
-                    </ErrorBoundary>
-                })}
-                </div>
-            )
-            ;
-            btnClass = classes.Red;
-        }
-
-        const assignedClasses = [];
-        if (this.state.persons.length <= 1) {
-            assignedClasses.push(classes.Red);
-        }
+            listPerson = <Persons
+                clicked={this.deletePersonHandler}
+                changed={this.nameChangeHandler}
+                persons={this.state.persons}/>
+        };
 
         return (
             <div className={classes.App}>
-                <p className={assignedClasses.join(' ')}>Hello!!!</p>
-                <button className={btnClass} onClick={this.tooglePersonsHandler}>
-                    Switch Names
-                </button>
+                <Cockpit
+                    personsLength={this.state.persons.length}
+                    clicked={this.tooglePersonsHandler}
+                    showPersons={this.state.showPersons}/>
                 {listPerson}
             </div>
         );
