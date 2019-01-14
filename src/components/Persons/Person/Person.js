@@ -3,17 +3,32 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import classes from './Person.css';
 
 class Person extends Component {
+    constructor(props) {
+        super(props);
+        console.log('[Person.js] Inside Constructor', props);
+    }
+
+    componentWillMount() {
+        console.log('[Person.js] Inside ComponentWillMount');
+    }
+
+    componentDidMount() {
+        console.log('[Person.js] Inside componentDidMount');
+    }
+
     state = {
         status: false
     };
 
     aHandler = () => {
-        this.setState({
-            status: !this.state.status
-        })
+        this.setState((previousStatus) =>{return {
+            status: !previousStatus.status}}
+        )
     };
 
     render() {
+        console.log('[Person.js] Inside render');
+
         const iconStyle = {
             marginLeft: 80
         };
@@ -25,8 +40,8 @@ class Person extends Component {
         return (
             <div className={classes.Person}>
                 <div>
-                    {this.state.status?
-                        <FontAwesomeIcon onClick={this.aHandler} icon={"arrow-alt-circle-up"}/>:
+                    {this.state.status ?
+                        <FontAwesomeIcon onClick={this.aHandler} icon={"arrow-alt-circle-up"}/> :
                         <FontAwesomeIcon onClick={this.aHandler} icon={"arrow-alt-circle-down"}/>}
                     <FontAwesomeIcon style={iconStyle} onClick={this.props.click} icon={"times-circle"}/>
                 </div>

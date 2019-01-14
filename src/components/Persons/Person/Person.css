@@ -13,7 +13,7 @@
   cursor: pointer;
   font: inherit;
   overflow: hidden;
-  word-wrap: break-spaces;
+  word-wrap: break-word;
   text-overflow: ellipsis; }
   .Person:hover {
     box-shadow: 2px 5px 5px #282c34; }

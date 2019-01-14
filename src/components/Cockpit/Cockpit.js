@@ -1,22 +1,22 @@
 import React from 'react';
 import classes from "./Cockpit.css";
+import Aux from '../../hoc/Aux'
 
 const cockpit = (props) => {
     const assignedClasses = [];
     if (props.personsLength <= 1) {
         assignedClasses.push(classes.Red);
     }
-    let btnClass = '';
+    let btnClass = classes.Button;
     if (props.showPersons) {
-        btnClass = classes.Red;
+        btnClass = [classes.Button, classes.Red].join(' ');
     }
-    return (
-        <div className={classes.Cockpit}>
-            <p className={assignedClasses.join(' ')}>Hello!!!</p>
-            <button className={btnClass} onClick={props.clicked}>
-                Switch Names
-            </button>
-        </div>);
+    return <Aux>
+        <p className={assignedClasses.join(' ')}>{props.title}</p>
+        <button className={btnClass} onClick={props.clicked}>
+            Switch Names
+        </button>
+    </Aux>;
 };
 
 export default cockpit;

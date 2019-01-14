@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import classes from './App.css';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import * as Icon from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,38 @@ library.add(Icon.faArrowAltCircleDown);
 library.add(Icon.faArrowAltCircleUp);
 library.add(Icon.faTimesCircle);
 
-class App extends Component {
+class App extends PureComponent {
+    constructor(props) {
+        super(props);
+        console.log('[App.js] Inside Constructor', props);
+    }
+
+    componentWillMount() {
+        console.log('[App.js] Inside ComponentWillMount');
+    }
+
+    componentDidMount() {
+        console.log('[App.js] Inside componentDidMount');
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('UPDATE [App.js] Inside componentWillReceiveProps', nextProps);
+    }
+
+    /*shouldComponentUpdate(nextProps, nextState) {
+        console.log('UPDATE [App.js] Inside shouldComponentUpdate', nextProps, nextState);
+        return nextState.persons !== this.state.persons ||
+            nextState.showPersons !== this.state.showPersons;
+    }*/
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('UPDATE [App.js] Inside componentWillUpdate', nextProps, nextState);
+    }
+
+    componentDidUpdate() {
+        console.log('UPDATE [App.js] Inside componentDidUpdate');
+    }
+
     state = {
         persons: [
             {
@@ -20,6 +51,31 @@ class App extends Component {
             {
                 id: "qwq312",
                 name: "Javier",
+                age: 23
+            },
+            {
+                id: "qwq3142",
+                name: "Fernández",
+                age: 23
+            },
+            {
+                id: "qwq3412",
+                name: "Monje",
+                age: 23
+            },
+            {
+                id: "qwq3e12",
+                name: "Remigio",
+                age: 23
+            },
+            {
+                id: "qwqr312",
+                name: "Javier",
+                age: 23
+            },
+            {
+                id: "qr312",
+                name: "Fernández",
                 age: 23
             }
         ],
@@ -50,7 +106,7 @@ class App extends Component {
     };
 
     deletePersonHandler = (idx) => {
-        const persons = this.state.persons;
+        const persons = [...this.state.persons];
         persons.splice(idx, 1);
         this.setState({
             persons: persons
@@ -82,6 +138,8 @@ class App extends Component {
     };
 
     render() {
+        console.log('[App.js] Inside Render');
+
         let listPerson = null;
 
         if (this.state.showPersons) {
@@ -89,11 +147,13 @@ class App extends Component {
                 clicked={this.deletePersonHandler}
                 changed={this.nameChangeHandler}
                 persons={this.state.persons}/>
-        };
+        }
+        ;
 
         return (
             <div className={classes.App}>
                 <Cockpit
+                    title={this.props.title}
                     personsLength={this.state.persons.length}
                     clicked={this.tooglePersonsHandler}
                     showPersons={this.state.showPersons}/>
