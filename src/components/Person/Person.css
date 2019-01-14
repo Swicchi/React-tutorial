@@ -14,18 +14,16 @@
   font: inherit;
   overflow: hidden;
   word-wrap: break-spaces;
-  text-overflow: ellipsis;
-  &:hover {
-    box-shadow: 2px 5px 5px #282c34;
-  }
-  .data{
+  text-overflow: ellipsis; }
+  .Person:hover {
+    box-shadow: 2px 5px 5px #282c34; }
+  .Person .data {
     flex-direction: column;
     display: flex;
-    margin: 10px;
-  }
-}
+    margin: 10px; }
+
 @media (min-width: 500px) {
-  .Person{
-    width: 450px;
-  }
-}
+  .Person {
+    width: 450px; } }
+
+/*# sourceMappingURL=Person.css.map */

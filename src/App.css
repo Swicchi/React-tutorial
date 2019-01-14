@@ -6,6 +6,28 @@
     justify-content: center;
 }
 
-.red {
+.Red {
     color: red;
+}
+.App button{
+    cursor: pointer;
+    color: #131;
+    font: inherit;
+    border: 1px solid blue;
+    background-color:lightgreen;
+    padding: 8px;
+    margin: 10px;
+}
+
+.App button:hover{
+    background: #3f3;
+    color: black;
+}
+
+.App button.Red{
+    background-color: lightsalmon;
+}
+.App button.Red:hover {
+    background-color:red ;
+    color: black;
 }

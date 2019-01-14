@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import Person from './components/Person/Person'
 import classes from './App.css';
-import {library} from '@fortawesome/fontawesome-svg-core'
-import * as Icon from '@fortawesome/free-solid-svg-icons'
+import {library} from '@fortawesome/fontawesome-svg-core';
+import * as Icon from '@fortawesome/free-solid-svg-icons';
+import Person from "./components/Person/Person";
+import ErrorBoundary from "./components/ErrorBoundary/ErrorBoundary";
 
 library.add(Icon.faArrowAltCircleDown);
 library.add(Icon.faArrowAltCircleUp);
@@ -56,8 +57,8 @@ class App extends Component {
         })
     };
 
-    nameChangeHandler = (event,id) => {
-        const personIdx = this.state.persons.findIndex(p =>{
+    nameChangeHandler = (event, id) => {
+        const personIdx = this.state.persons.findIndex(p => {
             return p.id === id;
         });
 
@@ -69,7 +70,7 @@ class App extends Component {
         const persons = [...this.state.persons];
         persons[personIdx] = person;
         this.setState({
-            persons:persons
+            persons: persons
         })
     };
 
@@ -81,39 +82,34 @@ class App extends Component {
     };
 
     render() {
-        const style = {
-            cursor: 'pointer',
-            color: '#131',
-            font: 'inherit',
-            border: '1px solid blue',
-            backgroundColor: '#3f3',
-            padding: '8px',
-            margin: '10px',
-        };
-
         let listPerson = null;
+        let btnClass = '';
 
         if (this.state.showPersons) {
-            listPerson = (<div> {this.state.persons.map((person, idx) =>
-                <Person click={() => this.deletePersonHandler(idx)}
-                         change={(event)=>this.nameChangeHandler(event,person.id)}
-                         name={person.name}
-                         age={person.age}
-                         key={person.id}/>)}
-            </div>);
-            style.backgroundColor='#f33'
+            listPerson = (<div> {this.state.persons.map((person, idx) => {
+                    return <ErrorBoundary  key={person.id}>
+                        <Person click={() => this.deletePersonHandler(idx)}
+                                change={(event) => this.nameChangeHandler(event, person.id)}
+                                name={person.name}
+                                age={person.age}
+                               />
+                    </ErrorBoundary>
+                })}
+                </div>
+            )
+            ;
+            btnClass = classes.Red;
         }
 
         const assignedClasses = [];
-        if(this.state.persons.length<=1){
-            assignedClasses.push(classes.red);
+        if (this.state.persons.length <= 1) {
+            assignedClasses.push(classes.Red);
         }
 
         return (
             <div className={classes.App}>
                 <p className={assignedClasses.join(' ')}>Hello!!!</p>
-                <button style={style}
-                        onClick={this.tooglePersonsHandler}>
+                <button className={btnClass} onClick={this.tooglePersonsHandler}>
                     Switch Names
                 </button>
                 {listPerson}
