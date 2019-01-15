@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import classes from './ErrorBoundary.css';
+import WithClass from '../../hoc/WithClass';
+
 
 class ErrorBoundary extends Component {
     state = {
@@ -14,12 +16,12 @@ class ErrorBoundary extends Component {
     render() {
         if (this.state.errorInfo) {
             return (
-                <div className={classes.ErrorBoundary}>
+                <WithClass classes={classes.ErrorBoundary}>
                     <h1>{this.state.error && this.state.error.toString()}</h1>
                     <details>
                         <p>{this.state.errorInfo.componentStack}</p>
                     </details>
-                </div>
+                </WithClass>
             );
         }
         return this.props.children;

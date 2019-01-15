@@ -18,14 +18,15 @@
   &:hover {
     box-shadow: 2px 5px 5px #282c34;
   }
-  .data{
+  .data {
     flex-direction: column;
     display: flex;
     margin: 10px;
   }
 }
+
 @media (min-width: 500px) {
-  .Person{
+  .Person {
     width: 450px;
   }
 }

@@ -2,25 +2,27 @@
 .Red {
     color: red;
 }
-.Button{
+
+.Button {
     cursor: pointer;
     color: #131;
     font: inherit;
     border: 1px solid blue;
-    background-color:lightgreen;
+    background-color: lightgreen;
     padding: 8px;
     margin: 10px;
 }
 
-.Button:hover{
+.Button:hover {
     background: #3f3;
     color: black;
 }
 
-.Button.Red{
+.Button.Red {
     background-color: lightsalmon;
 }
+
 .Button.Red:hover {
-    background-color:red ;
+    background-color: red;
     color: black;
 }

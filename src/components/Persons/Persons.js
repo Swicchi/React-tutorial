@@ -19,14 +19,14 @@ class Persons extends PureComponent {
         console.log('UPDATE [Persons.js] Inside componentWillReceiveProps', nextProps);
     }
 
-   /* shouldComponentUpdate(nextProps, nextState) {
-        console.log('UPDATE [Persons.js] Inside shouldComponentUpdate', nextProps, nextState);
-        return nextProps.persons !== this.props.persons ||
-            nextProps.clicked !== this.props.clicked ||
-            nextProps.changed !== this.props.changed;
-    }*/
+    /* shouldComponentUpdate(nextProps, nextState) {
+         console.log('UPDATE [Persons.js] Inside shouldComponentUpdate', nextProps, nextState);
+         return nextProps.persons !== this.props.persons ||
+             nextProps.clicked !== this.props.clicked ||
+             nextProps.changed !== this.props.changed;
+     }*/
 
-   componentWillUpdate(nextProps, nextState) {
+    componentWillUpdate(nextProps, nextState) {
         console.log('UPDATE [Persons.js] Inside componentWillUpdate', nextProps, nextState);
     }
 
@@ -45,7 +45,6 @@ class Persons extends PureComponent {
                            age={person.age}/>
         });
     }
-
 }
 
 export default Persons;

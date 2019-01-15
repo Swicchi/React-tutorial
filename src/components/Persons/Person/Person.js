@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import classes from './Person.css';
+import WithClass from '../../../hoc/WithClass';
 
 class Person extends Component {
     constructor(props) {
@@ -21,8 +22,11 @@ class Person extends Component {
     };
 
     aHandler = () => {
-        this.setState((previousStatus) =>{return {
-            status: !previousStatus.status}}
+        this.setState((previousState) => {
+                return {
+                    status: !previousState.status
+                }
+            }
         )
     };
 
@@ -38,7 +42,7 @@ class Person extends Component {
         };
 
         return (
-            <div className={classes.Person}>
+            <WithClass classes={classes.Person}>
                 <div>
                     {this.state.status ?
                         <FontAwesomeIcon onClick={this.aHandler} icon={"arrow-alt-circle-up"}/> :
@@ -55,7 +59,7 @@ class Person extends Component {
                         value={this.props.name}
                         onChange={this.props.change}/>
                 </div>}
-            </div>);
+            </WithClass>);
     }
 }
 
