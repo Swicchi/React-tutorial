@@ -4,7 +4,8 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import * as Icon from '@fortawesome/free-solid-svg-icons';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import WithClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
 
 library.add(Icon.faArrowAltCircleDown);
 library.add(Icon.faArrowAltCircleUp);
@@ -80,7 +81,8 @@ class App extends PureComponent {
                 age: 23
             }
         ],
-        showPersons: false
+        showPersons: false,
+        toggleClicked:0
     };
 
     switchNameHandler = () => {
@@ -131,10 +133,11 @@ class App extends PureComponent {
         })
     };
 
-    tooglePersonsHandler = () => {
+    togglePersonsHandler = () => {
         this.setState((previousState) => {
             return {
-                showPersons: !previousState.showPersons
+                showPersons: !previousState.showPersons,
+                toggleClicked: previousState.toggleClicked+1
             }
         })
     };
@@ -152,16 +155,16 @@ class App extends PureComponent {
         };
 
         return (
-            <WithClass classes={classes.App}>
+            <Aux>
                 <Cockpit
                     title={this.props.title}
                     personsLength={this.state.persons.length}
-                    clicked={this.tooglePersonsHandler}
+                    clicked={this.togglePersonsHandler}
                     showPersons={this.state.showPersons}/>
                 {listPerson}
-            </WithClass>
+            </Aux>
         );
     }
 }
 
-export default App;
+export default withClass(App,classes.App);

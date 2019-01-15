@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import classes from './Person.css';
-import WithClass from '../../../hoc/WithClass';
+import withClass from '../../../hoc/withClass';
+import Aux from '../../../hoc/Aux';
 
 class Person extends Component {
     constructor(props) {
@@ -42,7 +44,7 @@ class Person extends Component {
         };
 
         return (
-            <WithClass classes={classes.Person}>
+            <Aux>
                 <div>
                     {this.state.status ?
                         <FontAwesomeIcon onClick={this.aHandler} icon={"arrow-alt-circle-up"}/> :
@@ -57,10 +59,17 @@ class Person extends Component {
                         style={inputStyle}
                         type='text'
                         value={this.props.name}
-                        onChange={this.props.change}/>
+                        onChange={this.props.changed}/>
                 </div>}
-            </WithClass>);
+            </Aux>);
     }
 }
 
-export default Person;
+Person.protoType={
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
+};
+
+export default withClass(Person,classes.Person);

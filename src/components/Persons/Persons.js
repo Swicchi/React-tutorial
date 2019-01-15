@@ -1,7 +1,7 @@
-import React, {PureComponent} from 'react';
+import React, {Component} from 'react';
 import Person from "./Person/Person";
 
-class Persons extends PureComponent {
+class Persons extends Component {
     constructor(props) {
         super(props);
         console.log('[Persons.js] Inside Constructor', props);
@@ -40,7 +40,7 @@ class Persons extends PureComponent {
         return this.props.persons.map((person, idx) => {
             return <Person key={person.id}
                            click={() => this.props.clicked(idx)}
-                           change={(event) => this.props.changed(event, person.id)}
+                           changed={(event)=>this.props.changed(event,person.id)}
                            name={person.name}
                            age={person.age}/>
         });
