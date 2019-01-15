@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import classes from './Person.css';
-import withClass from '../../../hoc/withClass';
 import Aux from '../../../hoc/Aux';
+import withClass from "../../../hoc/withClass";
 
 class Person extends Component {
     constructor(props) {
         super(props);
         console.log('[Person.js] Inside Constructor', props);
+        this.inputElement = React.createRef();
     }
 
     componentWillMount() {
@@ -17,6 +18,17 @@ class Person extends Component {
 
     componentDidMount() {
         console.log('[Person.js] Inside componentDidMount');
+        if (this.props.position === 0)
+            this.focus();
+    }
+
+    componentDidUpdate() {
+        this.focus();
+    }
+
+    focus() {
+        if (this.state.status)
+            this.inputElement.current.focus();
     }
 
     state = {
@@ -56,6 +68,7 @@ class Person extends Component {
                 <div className={classes['data']}>
                     <p>Your age: {this.props.age}</p>
                     <input
+                        ref={this.inputElement}
                         style={inputStyle}
                         type='text'
                         value={this.props.name}
@@ -65,11 +78,11 @@ class Person extends Component {
     }
 }
 
-Person.protoType={
-  click: PropTypes.func,
-  name: PropTypes.string,
-  age: PropTypes.number,
-  changed: PropTypes.func
+Person.protoType = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func
 };
 
 export default withClass(Person,classes.Person);
