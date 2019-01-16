@@ -20,7 +20,7 @@ const withClass = (WrappedComponent, className) => {
                 <WrappedComponent ref={this.props.forwardedRef} {...this.props}/>
             </div>);
         }
-    }
+    };
     return React.forwardRef((props, ref) => {
         return <WithClass {...props} forwardedRef={ref}/>
     })

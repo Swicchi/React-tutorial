@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import classes from './ErrorBoundary.css';
-import WithClass from '../../hoc/withClass';
+import WithClass from '../../hoc/WithClass';
 
 
 class ErrorBoundary extends Component {

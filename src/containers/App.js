@@ -4,12 +4,14 @@ import {library} from '@fortawesome/fontawesome-svg-core';
 import * as Icon from '@fortawesome/free-solid-svg-icons';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import withClass from '../hoc/withClass';
+import withClass from '../hoc/WithClass';
 import Aux from '../hoc/Aux';
 
 library.add(Icon.faArrowAltCircleDown);
 library.add(Icon.faArrowAltCircleUp);
 library.add(Icon.faTimesCircle);
+
+export const AuthContext = React.createContext(false);
 
 class App extends PureComponent {
     constructor(props) {
@@ -82,30 +84,8 @@ class App extends PureComponent {
             }
         ],
         showPersons: false,
-        toggleClicked:0
-    };
-
-    switchNameHandler = () => {
-        this.setState({
-            persons:
-                [
-                    {
-                        id: "gq312",
-                        name: "Javier",
-                        age: 23
-                    },
-                    {
-                        id: "qdw312",
-                        name: "Remigio",
-                        age: 25
-                    },
-                    {
-                        id: "qwn312",
-                        name: "Fernandez",
-                        age: 26
-                    }
-                ]
-        })
+        toggleClicked: 0,
+        authenticated: false
     };
 
     deletePersonHandler = (idx) => {
@@ -137,9 +117,13 @@ class App extends PureComponent {
         this.setState((previousState) => {
             return {
                 showPersons: !previousState.showPersons,
-                toggleClicked: previousState.toggleClicked+1
+                toggleClicked: previousState.toggleClicked + 1
             }
         })
+    };
+
+    loginHandler = () => {
+        this.setState({authenticated: true});
     };
 
     render() {
@@ -152,7 +136,8 @@ class App extends PureComponent {
                 clicked={this.deletePersonHandler}
                 changed={this.nameChangeHandler}
                 persons={this.state.persons}/>
-        };
+        }
+        ;
 
         return (
             <Aux>
@@ -160,11 +145,14 @@ class App extends PureComponent {
                     title={this.props.title}
                     personsLength={this.state.persons.length}
                     clicked={this.togglePersonsHandler}
+                    login={this.loginHandler}
                     showPersons={this.state.showPersons}/>
-                {listPerson}
+                <AuthContext.Provider value={this.state.authenticated}>
+                    {listPerson}
+                </AuthContext.Provider>
             </Aux>
         );
     }
 }
 
-export default withClass(App,classes.App);
+export default withClass(App, classes.App);

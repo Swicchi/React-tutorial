@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import classes from './Person.css';
 import Aux from '../../../hoc/Aux';
-import withClass from "../../../hoc/withClass";
+import withClass from "../../../hoc/WithClass";
+import {AuthContext} from "../../../containers/App";
 
 class Person extends Component {
     constructor(props) {
@@ -57,6 +58,9 @@ class Person extends Component {
 
         return (
             <Aux>
+                <AuthContext.Consumer>
+                {auth => auth?<p>I'm authenticated</p>:null}
+                </AuthContext.Consumer>
                 <div>
                     {this.state.status ?
                         <FontAwesomeIcon onClick={this.aHandler} icon={"arrow-alt-circle-up"}/> :
