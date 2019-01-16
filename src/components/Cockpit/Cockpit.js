@@ -20,4 +20,4 @@ const cockpit = (props) => {
     </Aux>;
 };
 
-export default cockpit;
+export default React.memo(cockpit);

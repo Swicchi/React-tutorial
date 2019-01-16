@@ -19,32 +19,6 @@ class App extends PureComponent {
         console.log('[App.js] Inside Constructor', props);
     }
 
-    componentWillMount() {
-        console.log('[App.js] Inside ComponentWillMount');
-    }
-
-    componentDidMount() {
-        console.log('[App.js] Inside componentDidMount');
-    }
-
-    componentWillReceiveProps(nextProps) {
-        console.log('UPDATE [App.js] Inside componentWillReceiveProps', nextProps);
-    }
-
-    /*shouldComponentUpdate(nextProps, nextState) {
-        console.log('UPDATE [App.js] Inside shouldComponentUpdate', nextProps, nextState);
-        return nextState.persons !== this.state.persons ||
-            nextState.showPersons !== this.state.showPersons;
-    }*/
-
-    componentWillUpdate(nextProps, nextState) {
-        console.log('UPDATE [App.js] Inside componentWillUpdate', nextProps, nextState);
-    }
-
-    componentDidUpdate() {
-        console.log('UPDATE [App.js] Inside componentDidUpdate');
-    }
-
     state = {
         persons: [
             {
@@ -87,6 +61,41 @@ class App extends PureComponent {
         toggleClicked: 0,
         authenticated: false
     };
+
+    componentWillMount() {
+        console.log('[App.js] Inside ComponentWillMount');
+    }
+
+    componentDidMount() {
+        console.log('[App.js] Inside componentDidMount');
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log('UPDATE [App.js] Inside componentWillReceiveProps', nextProps);
+    }
+
+    /*shouldComponentUpdate(nextProps, nextState) {
+        console.log('UPDATE [App.js] Inside shouldComponentUpdate', nextProps, nextState);
+        return nextState.persons !== this.state.persons ||
+            nextState.showPersons !== this.state.showPersons;
+    }*/
+
+    componentWillUpdate(nextProps, nextState) {
+        console.log('UPDATE [App.js] Inside componentWillUpdate', nextProps, nextState);
+    }
+
+    getDerivedStateFromProps(nextProps, prevState) {
+        console.log('UPDATE [App.js] Inside getDerivedStateFromProps', nextProps, prevState);
+        return prevState;
+    }
+
+    getSnapshotBeforeUpdate(){
+        console.log('UPDATE [App.js] Inside getSnapshotBeforeUpdate');
+    }
+
+    componentDidUpdate() {
+        console.log('UPDATE [App.js] Inside componentDidUpdate');
+    }
 
     deletePersonHandler = (idx) => {
         const persons = [...this.state.persons];
